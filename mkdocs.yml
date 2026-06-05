@@ -1,0 +1,36 @@
+site_name: 开拓者：正义之怒 Wiki
+site_description: 开拓者：正义之怒 中文攻略 Wiki
+site_url: https://himobrine.github.io/Pathfinder-Wrath-of-the-Righteous-wiki
+repo_url: https://github.com/himobrine/Pathfinder-Wrath-of-the-Righteous-wiki
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - search.highlight
+    - content.action.edit
+  palette:
+    primary: red
+    accent: deep orange
+
+extra_javascript:
+  - javascripts/app.js
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+
+nav:
+  - 首页: index.md
+  - 职业: classes/index.md
+  - 游戏机制: mechanics/index.md
+  - 构筑指南: guides/index.md
+  - BD 制作工具: build-planner.md
+  - 物品装备: items/index.md
