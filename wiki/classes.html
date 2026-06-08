@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>职业 — 开拓者：正义之怒 Wiki</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">WotR Wiki</a>
+      <div class="nav-links">
+        <a href="../index.html">首页</a>
+        <a href="classes.html" class="active">职业</a>
+        <a href="races.html">种族</a>
+        <a href="feats.html">专长</a>
+        <a href="spells.html">法术</a>
+        <a href="mythic-paths.html">神话道途</a>
+        <a href="../builder/index.html">Build 构建器</a>
+        <a href="../builds/index.html">Build 展示</a>
+      </div>
+      <div class="nav-search">
+        <input type="text" placeholder="搜索..." id="global-search-input">
+      </div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="page-header">
+      <h1>职业</h1>
+      <p>全部基础职业与进阶职业数据</p>
+    </div>
+    <div class="filter-bar">
+      <select id="class-type-filter">
+        <option value="all">全部</option>
+        <option value="base">基础职业</option>
+        <option value="prestige">进阶职业</option>
+      </select>
+      <input type="text" id="class-search" placeholder="搜索职业...">
+    </div>
+    <table class="wiki-table" id="class-table">
+      <thead>
+        <tr>
+          <th>职业</th>
+          <th>生命骰</th>
+          <th>BAB</th>
+          <th>强韧</th>
+          <th>反射</th>
+          <th>意志</th>
+          <th>技能</th>
+          <th>施法</th>
+        </tr>
+      </thead>
+      <tbody id="class-table-body"></tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>开拓者：正义之怒 Wiki &mdash; 开源项目</p>
+  </div>
+
+  <script src="../js/constants.js"></script>
+  <script src="../js/data-loader.js"></script>
+  <script src="../js/wiki.js"></script>
+  <script src="../js/search.js"></script>
+</body>
+</html>

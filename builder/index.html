@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build 构建器 — 开拓者：正义之怒 Wiki</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">WotR Wiki</a>
+      <div class="nav-links">
+        <a href="../index.html">首页</a>
+        <a href="../wiki/classes.html">职业</a>
+        <a href="../wiki/races.html">种族</a>
+        <a href="../wiki/feats.html">专长</a>
+        <a href="../wiki/spells.html">法术</a>
+        <a href="../wiki/mythic-paths.html">神话道途</a>
+        <a href="index.html" class="active">Build 构建器</a>
+        <a href="../builds/index.html">Build 展示</a>
+      </div>
+      <div class="nav-search">
+        <input type="text" placeholder="搜索..." id="global-search-input">
+      </div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="page-header">
+      <h1>Build 构建器</h1>
+      <p>所见即所得的配点规划工具，遵循游戏内 Build 流程</p>
+    </div>
+
+    <!-- Step indicator -->
+    <div class="steps" id="builder-steps">
+      <span class="step active" data-step="0">① 种族</span>
+      <span class="step" data-step="1">② 属性</span>
+      <span class="step" data-step="2">③ 职业</span>
+      <span class="step" data-step="3">④ 技能</span>
+      <span class="step" data-step="4">⑤ 专长</span>
+      <span class="step" data-step="5">⑥ 法术</span>
+      <span class="step" data-step="6">⑦ 神祇</span>
+      <span class="step" data-step="7">⑧ 神话道途</span>
+      <span class="step" data-step="8">⑨ 导出</span>
+    </div>
+
+    <!-- Builder layout -->
+    <div class="builder-layout">
+      <div class="builder-main" id="builder-main"></div>
+      <div class="builder-sidebar" id="builder-sidebar"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>开拓者：正义之怒 Wiki &mdash; 开源项目</p>
+  </div>
+
+  <script src="../js/constants.js"></script>
+  <script src="../js/data-loader.js"></script>
+  <script src="../js/calculator.js"></script>
+  <script src="../js/builder.js"></script>
+  <script src="../js/builder-ui.js"></script>
+  <script src="../js/export.js"></script>
+  <script src="../js/search.js"></script>
+</body>
+</html>

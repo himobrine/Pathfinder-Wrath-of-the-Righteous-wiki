@@ -1,0 +1,164 @@
+[
+  {
+    "id": "human",
+    "name": "人类",
+    "name_en": "Human",
+    "ability_bonuses": { "strength": 2 },
+    "size": "中型",
+    "speed": 30,
+    "traits": [
+      "额外专长：1级时获得1个额外专长",
+      "额外技能：每级获得1个额外技能点"
+    ],
+    "description": "人类是格拉利昂上最多样化和最具适应性的种族。人类的适应力使他们能够精通各种职业。"
+  },
+  {
+    "id": "dwarf",
+    "name": "矮人",
+    "name_en": "Dwarf",
+    "ability_bonuses": { "constitution": 2, "wisdom": 2, "charisma": -2 },
+    "size": "中型",
+    "speed": 20,
+    "traits": [
+      "黑暗视觉：60英尺",
+      "防御训练：对抗巨人类生物时AC+4闪避加值",
+      "坚韧：对抗毒素、法术和类法术能力时豁免+2",
+      "岩石敏锐：察觉岩石中的异常时+2加值"
+    ],
+    "description": "矮人是坚韧勤劳的种族，以出色的建筑和工艺闻名。他们天生抵抗魔法和毒素。"
+  },
+  {
+    "id": "elf",
+    "name": "精灵",
+    "name_en": "Elf",
+    "ability_bonuses": { "dexterity": 2, "intelligence": 2, "constitution": -2 },
+    "size": "中型",
+    "speed": 30,
+    "traits": [
+      "精灵免疫：对抗睡眠效果免疫，对抗惑控系法术+2豁免",
+      "低光视觉",
+      "武器熟悉：擅长长剑、细剑、长弓、短弓",
+      "敏锐感官：察觉+2"
+    ],
+    "description": "精灵是优雅而长寿的种族，天生精通魔法和弓箭。"
+  },
+  {
+    "id": "half-elf",
+    "name": "半精灵",
+    "name_en": "Half-Elf",
+    "ability_bonuses": { "strength": 2, "charisma": 2 },
+    "size": "中型",
+    "speed": 30,
+    "traits": [
+      "精灵免疫：对抗睡眠效果免疫",
+      "低光视觉",
+      "技能专攻：选择一项技能获得+2种族加值",
+      "适应力：获得技能专攻（任意）"
+    ],
+    "description": "半精灵结合了人类和精灵的特质，既有适应力又有精灵的天赋。"
+  },
+  {
+    "id": "half-orc",
+    "name": "半兽人",
+    "name_en": "Half-Orc",
+    "ability_bonuses": { "strength": 2, "constitution": 2, "intelligence": -2 },
+    "size": "中型",
+    "speed": 30,
+    "traits": [
+      "黑暗视觉：60英尺",
+      "威吓：威吓+2",
+      "兽人凶猛：生命值降至0以下时可继续战斗1轮",
+      "武器熟悉：擅长所有兽人武器"
+    ],
+    "description": "半兽人拥有人类和兽人的力量，是强悍的战士种族。"
+  },
+  {
+    "id": "halfling",
+    "name": "半身人",
+    "name_en": "Halfling",
+    "ability_bonuses": { "dexterity": 2, "charisma": 2, "strength": -2 },
+    "size": "小型",
+    "speed": 20,
+    "traits": [
+      "小型体型：AC+1，攻击+1，CMB-1，隐匿+4",
+      " fearless：对抗恐惧时豁免+2",
+      "半身人幸运：所有豁免+1",
+      "精准投掷：投掷武器攻击+1"
+    ],
+    "description": "半身人是以乐观和好奇心闻名的矮小种族。他们灵活敏捷，运气极好。"
+  },
+  {
+    "id": "gnome",
+    "name": "侏儒",
+    "name_en": "Gnome",
+    "ability_bonuses": { "constitution": 2, "charisma": 2, "strength": -2 },
+    "size": "小型",
+    "speed": 20,
+    "traits": [
+      "小型体型：AC+1，攻击+1，CMB-1，隐匿+4",
+      "低光视觉",
+      "侏儒魔法：DC=10+1/2等级+魅调的任意法术每日1次",
+      "对抗幻术+2豁免",
+      "对抗精类生物+2攻击"
+    ],
+    "description": "侏儒是热情而好奇的小型种族，与自然和魔法有着深刻的联系。"
+  },
+  {
+    "id": "tiefling",
+    "name": "魔裔",
+    "name_en": "Tiefling",
+    "ability_bonuses": { "intelligence": 2, "dexterity": 2, "charisma": -2 },
+    "size": "中型",
+    "speed": 30,
+    "traits": [
+      "黑暗视觉：60英尺",
+      "寒冷抗性5、闪电抗性5、火焰抗性5",
+      "类法术能力：黑暗术每日1次"
+    ],
+    "description": "魔裔拥有来自下层位面的血统，恶魔或魔鬼的传承在他们身上留下了印记。"
+  },
+  {
+    "id": "aasimar",
+    "name": "神裔",
+    "name_en": "Aasimar",
+    "ability_bonuses": { "wisdom": 2, "charisma": 2 },
+    "size": "中型",
+    "speed": 30,
+    "traits": [
+      "黑暗视觉：60英尺",
+      "强光抗力：火焰抗性5、强酸抗性5",
+      "类法术能力：昼明术每日1次",
+      "技能：察觉+2"
+    ],
+    "description": "神裔拥有来自上界位面的天界血统，体内流淌着神圣之光。"
+  },
+  {
+    "id": "dhampir",
+    "name": "吸血裔",
+    "name_en": "Dhampir",
+    "ability_bonuses": { "dexterity": 2, "intelligence": 2, "constitution": -2 },
+    "size": "中型",
+    "speed": 30,
+    "traits": [
+      "黑暗视觉：60英尺",
+      "能量抗力：负能量抗力5",
+      "类法术能力：",
+      "操控能力：对类人生物的威吓+2"
+    ],
+    "description": "吸血裔是吸血鬼与凡人结合的后代，拥有超自然的优雅和黑暗的力量。"
+  },
+  {
+    "id": "kitsune",
+    "name": "狐妖",
+    "name_en": "Kitsune",
+    "ability_bonuses": { "dexterity": 2, "charisma": 2 },
+    "size": "中型",
+    "speed": 30,
+    "traits": [
+      "低光视觉",
+      "变身：可在类人形态和狐形态间切换",
+      "魅惑：每日1次魅惑类人（DC=10+1/2等级+魅调）"
+    ],
+    "description": "狐妖是能变化为人类形态的聪慧狐族，擅长幻术和社交。"
+  }
+]
