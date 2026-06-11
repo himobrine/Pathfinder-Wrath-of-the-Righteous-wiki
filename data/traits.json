@@ -4,6 +4,7 @@
     "name": "专长",
     "description": "专长代表角色所掌握的能力。专长通常能使角色绕开规则的制约。在1级时，以及之后每升2级，角色都可以获得一个专长。人类1级时可获得1个额外专长。",
     "match": "专长",
+    "img": "../assets/racial%20characteristics/Lack%20of%20skills.png",
     "races": ["human"]
   },
   {
@@ -11,6 +12,7 @@
     "name": "技不压身",
     "description": "人类在1级时获得一个额外技能点，并在每次升级时都获得一个额外技能点。",
     "match": "技不压身",
+    "img": "../assets/racial%20characteristics/expertise.png",
     "races": ["human"]
   },
   {

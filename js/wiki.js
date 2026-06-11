@@ -176,6 +176,7 @@ function showTraitDetail(t, fromRaceId) {
     <div class="race-float-inner">
       <button class="race-float-close">&times;</button>
       <p style="margin-bottom:8px">${fromRaceId ? `<a href="#" class="back-link" data-race-id="${fromRaceId}">← 返回 ${getRaceName(fromRaceId)}</a>` : ""}</p>
+      ${t.img ? `<img src="${t.img}" alt="${t.name}" style="width:100%;max-height:180px;object-fit:contain;border-radius:8px;margin-bottom:12px">` : ""}
       <h2 style="font-size:1.3rem;font-weight:600">${t.name}</h2>
       <p style="margin-top:12px;line-height:1.7;color:var(--ink-muted-80);font-size:0.9rem">${t.description}</p>
       <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline)">
