@@ -19,7 +19,7 @@
     "id": "elf-immunity-full",
     "name": "精灵免疫",
     "description": "精灵免疫：精灵免疫魔法睡眠效应，并且在对抗惑控法术和效应时，他们的豁免检定会获得+2种族加值。",
-    "match": "精灵免疫：精灵免疫魔法睡眠效应，并且在对抗惑控法术和效应时，他们的豁免检定会获得+2种族加值。",
+    "match": "精灵免疫",
     "img": "../assets/racial%20characteristics/Elf%20immunity.png",
     "races": ["elf"]
   },
@@ -27,7 +27,7 @@
     "id": "weapon-proficiency-elf",
     "name": "精灵武器熟练",
     "description": "精灵武器熟练：精灵擅长使用长弓（包括复合长弓）、长剑、细剑以及短弓（包括复合短弓），并将任何名字中带有\u201c精灵\u201d词缀的武器视作军用武器。",
-    "match": "精灵武器熟练：精灵擅长使用长弓（包括复合长弓）、长剑、细剑以及短弓（包括复合短弓），并将任何名字中带有\u201c精灵\u201d词缀的武器视作军用武器。",
+    "match": "精灵武器熟练",
     "img": "../assets/racial%20characteristics/Proficient%20in%20elf%20weapons.png",
     "races": ["elf"]
   },
@@ -35,7 +35,7 @@
     "id": "keen-intuition",
     "name": "敏锐直觉",
     "description": "敏锐直觉：矮人、精灵、侏儒、半精灵、半兽人、半身人、狐妖、土巨灵裔在进行察觉检定时获得+2种族加值。",
-    "match": "敏锐直觉：矮人、精灵、侏儒、半精灵、半兽人、半身人、狐妖、土巨灵裔在进行察觉检定时获得+2种族加值。",
+    "match": "敏锐直觉",
     "img": "../assets/racial%20characteristics/Sharp%20intuition.png",
     "races": ["dwarf", "elf", "gnome", "half-elf", "half-orc", "halfling", "kitsune"]
   },
@@ -43,7 +43,7 @@
     "id": "elf-magic",
     "name": "精灵魔力",
     "description": "精灵魔力：在穿透法术抗力时，精灵的施法者等级检定会获得+2种族加值。此外，在鉴定魔法物品的特性时，精灵的知识（神秘）技能检定会获得+2种族加值。",
-    "match": "精灵魔力：在穿透法术抗力时，精灵的施法者等级检定会获得+2种族加值。此外，在鉴定魔法物品的特性时，精灵的知识（神秘）技能检定会获得+2种族加值。",
+    "match": "精灵魔力",
     "img": "../assets/racial%20characteristics/Elf%20Magic.png",
     "races": ["elf"]
   },
@@ -51,7 +51,7 @@
     "id": "elf-heritage",
     "name": "种族传承",
     "description": "种族传承：各种各样的地点和生活条件造成了与同胞有所区别的亚种。他们获得独特的种族特性，并失去某些常见的特性。",
-    "match": "种族传承：各种各样的地点和生活条件造成了与同胞有所区别的亚种。他们获得独特的种族特性，并失去某些常见的特性。",
+    "match": "种族传承",
     "img": "../assets/racial%20characteristics/Racial%20Inheritance.png",
     "races": ["elf"]
   }
