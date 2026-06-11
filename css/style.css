@@ -433,6 +433,39 @@ a:hover { text-decoration: underline; }
 .footer a { color: var(--ink-muted-48); text-decoration: underline; }
 .footer a:hover { color: var(--ink); }
 
+/* ===== Race detail float window ===== */
+.race-float-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 300;
+  background: var(--canvas);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 8px 20px rgba(0,0,0,0.08);
+  max-width: 520px;
+  width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.race-float-inner {
+  padding: 28px;
+  position: relative;
+}
+.race-float-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: var(--ink-muted-48);
+  line-height: 1;
+  font-family: inherit;
+}
+.race-float-close:hover { color: var(--ink); }
+
 /* ===== Responsive ===== */
 @media (max-width: 1068px) {
   .nav-links a { font-size: 11px; padding: 0 10px; }

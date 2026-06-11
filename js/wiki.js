@@ -55,24 +55,72 @@ async function initRaces() {
       let bonusText = "无";
       if (r.ability_bonuses) {
         if (r.ability_bonuses.any !== undefined) {
-          bonusText = r.ability_bonus_desc || `任意 +${r.ability_bonuses.any}`;
+          bonusText = r.ability_bonus_desc || `任意+${r.ability_bonuses.any}`;
         } else {
-          bonusText = Object.entries(r.ability_bonuses).map(([k, v]) => `${STAT_NAMES[k] || k} ${v > 0 ? "+" : ""}${v}`).join(", ");
+          bonusText = Object.entries(r.ability_bonuses).map(([k, v]) => `${STAT_NAMES[k] || k} ${v > 0 ? "+" : ""}${v}`).join("，");
         }
       }
-      const traitsHtml = r.traits ? (typeof r.traits === "object" && !Array.isArray(r.traits)
-        ? Object.entries(r.traits).map(([k, v]) => `<p style="font-size:0.82rem;margin-top:2px;"><strong>${k}：</strong>${(v || "").slice(0, 60)}</p>`).join("")
-        : (Array.isArray(r.traits) ? r.traits.map(t => `<p style="font-size:0.82rem;margin-top:2px;">${t}</p>`).join("") : "")) : "";
-      return `<div class="card">
+      return `<div class="card" data-race-id="${r.id}">
         <h3>${r.name}</h3>
-        <p><strong>属性加值：</strong>${bonusText}</p>
-        ${traitsHtml}
-        <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:4px">${(r.description || "").slice(0, 120)}</p>
+        <p style="color:var(--ink-muted-48);font-size:0.82rem">${r.size} · ${r.speed}ft</p>
+        <p style="margin-top:4px"><strong>属性加值：</strong>${bonusText}</p>
+        <p style="margin-top:8px;color:var(--accent);font-size:0.82rem">▶ 点击查看详情</p>
       </div>`;
     }).join("");
+    container.querySelectorAll(".card").forEach(el => {
+      el.addEventListener("click", () => {
+        const race = data.find(d => d.id === el.dataset.raceId);
+        if (race) showRaceDetail(race);
+      });
+    });
   }
   render();
   searchInput?.addEventListener("input", render);
+}
+
+function showRaceDetail(r) {
+  const existing = document.querySelector(".race-float-window");
+  if (existing) existing.remove();
+
+  let bonusText = "无";
+  if (r.ability_bonuses) {
+    if (r.ability_bonuses.any !== undefined) {
+      bonusText = r.ability_bonus_desc || `任意 +${r.ability_bonuses.any}`;
+    } else {
+      bonusText = Object.entries(r.ability_bonuses).map(([k, v]) => `${STAT_NAMES[k] || k} ${v > 0 ? "+" : ""}${v}`).join("，");
+    }
+  }
+
+  let traitsHtml = "";
+  if (r.traits) {
+    if (typeof r.traits === "object" && !Array.isArray(r.traits)) {
+      traitsHtml = Object.entries(r.traits).map(([k, v]) => `<p style="margin-top:6px"><strong>${k}：</strong>${v}</p>`).join("");
+    } else if (Array.isArray(r.traits)) {
+      traitsHtml = r.traits.map(t => `<p style="margin-top:6px">${t}</p>`).join("");
+    }
+  }
+
+  const el = document.createElement("div");
+  el.className = "race-float-window";
+  el.innerHTML = `
+    <div class="race-float-inner">
+      <button class="race-float-close">&times;</button>
+      <h2 style="font-size:1.3rem;font-weight:600">${r.name}</h2>
+      ${r.name_en ? `<p style="color:var(--ink-muted-48);font-size:0.9rem;margin-bottom:12px">${r.name_en}</p>` : ""}
+      <p style="margin-top:4px"><strong>体型：</strong>${r.size}　<strong>速度：</strong>${r.speed}ft</p>
+      <p style="margin-top:8px"><strong>属性加值：</strong>${bonusText}</p>
+      ${traitsHtml ? `<div style="margin-top:12px"><strong>种族特性：</strong>${traitsHtml}</div>` : ""}
+      ${r.description ? `<p style="margin-top:12px;line-height:1.7;color:var(--ink-muted-80);font-size:0.9rem">${r.description}</p>` : ""}
+    </div>
+  `;
+  document.body.appendChild(el);
+
+  el.querySelector(".race-float-close").addEventListener("click", () => el.remove());
+
+  const onKeyDown = (e) => {
+    if (e.key === "Escape") { el.remove(); document.removeEventListener("keydown", onKeyDown); }
+  };
+  document.addEventListener("keydown", onKeyDown);
 }
 
 async function initFeats() {
