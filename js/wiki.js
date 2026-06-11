@@ -154,7 +154,7 @@ async function initMythicPaths() {
         <h3>${p.name} ${hasSpellbook}</h3>
         <p style="font-size:0.85rem;color:var(--text-secondary)">${p.type} · ${alignRestrict}</p>
         <p style="font-size:0.85rem;margin-top:4px">${(p.description || "").slice(0, 150)}</p>
-        ${p.unlock_condition ? `<p style="font-size:0.8rem;color:var(--accent);margin-top:4px">🔓 ${p.unlock_condition}</p>` : ""}
+        ${p.unlock_condition ? `<p style="font-size:0.8rem;color:var(--accent);margin-top:4px"><img src="../assets/png/jiahao.png" alt="" style="width:1rem;height:1rem;vertical-align:middle"> ${p.unlock_condition}</p>` : ""}
       </div>`;
     }).join("");
   }

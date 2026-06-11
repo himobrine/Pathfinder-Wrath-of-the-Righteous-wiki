@@ -245,9 +245,9 @@ class BuilderApp {
     html += `</div>`;
 
     html += `<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">`;
-    html += `<button class="btn" onclick="builderApp.exportBuild()">📥 导出</button>`;
-    html += `<button class="btn" onclick="builderApp.importBuild()">📤 导入</button>`;
-    html += `<button class="btn" onclick="if(confirm('确定重置所有数据？')) builderApp.resetBuild()">🔄 重置</button>`;
+    html += `<button class="btn" onclick="builderApp.exportBuild()"><img src="../assets/png/jiahao.png" alt="" style="width:1rem;height:1rem;vertical-align:middle"> 导出</button>`;
+    html += `<button class="btn" onclick="builderApp.importBuild()"><img src="../assets/png/jiahao.png" alt="" style="width:1rem;height:1rem;vertical-align:middle"> 导入</button>`;
+    html += `<button class="btn" onclick="if(confirm('确定重置所有数据？')) builderApp.resetBuild()"><img src="../assets/png/jiahao.png" alt="" style="width:1rem;height:1rem;vertical-align:middle"> 重置</button>`;
     html += `</div>`;
 
     return html;

@@ -378,7 +378,7 @@ function renderMythicStep(app) {
       <h3>${p.name} <span class="badge ${p.type === '早期' ? 'badge-blue' : p.type === '后期' ? 'badge-red' : 'badge-green'}">${p.type}</span></h3>
       <p style="font-size:0.8rem;color:var(--text-secondary);">${(p.alignment_restrict || []).map(a => alignName(a)).join(" / ")}</p>
       <p style="font-size:0.82rem;margin-top:4px;">${(p.description || "").slice(0, 100)}</p>
-      ${p.unlock_condition ? `<p style="font-size:0.78rem;color:var(--accent);margin-top:4px;">🔓 ${p.unlock_condition}</p>` : ""}
+      ${p.unlock_condition ? `<p style="font-size:0.78rem;color:var(--accent);margin-top:4px;"><img src="../assets/png/jiahao.png" alt="" style="width:1rem;height:1rem;vertical-align:middle"> ${p.unlock_condition}</p>` : ""}
       ${!alignOk ? `<p style="font-size:0.78rem;color:red;margin-top:2px;">阵营不符</p>` : ""}
     </div>`;
   }
@@ -416,10 +416,10 @@ function renderExportStep(app) {
     <input type="text" value="${app.build.name}" onchange="builderApp.setBuildName(this.value)" style="max-width:400px;"></div>`;
 
   html += `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">`;
-  html += `<button class="btn btn-primary" onclick="builderApp.exportBuild()">📥 导出 Build</button>`;
-  html += `<button class="btn" onclick="builderApp.importBuild()">📤 导入 Build</button>`;
-  html += `<button class="btn" onclick="builderApp.saveToLocal()">💾 保存到本地</button>`;
-  html += `<button class="btn" onclick="builderApp.loadFromLocal()">📂 从本地加载</button>`;
+  html += `<button class="btn btn-primary" onclick="builderApp.exportBuild()"><img src="../assets/png/jiahao.png" alt="" style="width:1rem;height:1rem;vertical-align:middle"> 导出 Build</button>`;
+  html += `<button class="btn" onclick="builderApp.importBuild()"><img src="../assets/png/jiahao.png" alt="" style="width:1rem;height:1rem;vertical-align:middle"> 导入 Build</button>`;
+  html += `<button class="btn" onclick="builderApp.saveToLocal()"><img src="../assets/png/jiahao.png" alt="" style="width:1rem;height:1rem;vertical-align:middle"> 保存到本地</button>`;
+  html += `<button class="btn" onclick="builderApp.loadFromLocal()"><img src="../assets/png/jiahao.png" alt="" style="width:1rem;height:1rem;vertical-align:middle"> 从本地加载</button>`;
   html += `</div>`;
 
   html += `<div style="border:1px solid var(--border);border-radius:var(--radius);padding:16px;background:var(--bg-secondary);">`;
