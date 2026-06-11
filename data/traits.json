@@ -37,7 +37,7 @@
     "description": "敏锐直觉：矮人、精灵、侏儒、半精灵、半兽人、半身人、狐妖、土巨灵裔在进行察觉检定时获得+2种族加值。",
     "match": "敏锐直觉",
     "img": "../assets/racial%20characteristics/Sharp%20intuition.png",
-    "races": ["dwarf", "elf", "gnome", "half-elf", "half-orc", "halfling", "kitsune"]
+    "races": ["elf"]
   },
   {
     "id": "elf-magic",
