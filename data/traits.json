@@ -52,13 +52,6 @@
     "races": ["elf"]
   },
   {
-    "id": "low-light-vision",
-    "name": "低光视觉",
-    "description": "低光视觉。在星光、月光和火炬等低光条件下，拥有低光视觉的生物可以看得比人类更远。",
-    "match": "低光视觉",
-    "races": ["half-elf", "gnome", "kitsune"]
-  },
-  {
     "id": "weapon-proficiency-elf",
     "name": "精灵武器熟练",
     "description": "精灵武器熟练：精灵擅长使用长弓（包括复合长弓）、长剑、细剑以及短弓（包括复合短弓），并将任何名字中带有\u201c精灵\u201d词缀的武器视作军用武器。",
