@@ -52,9 +52,10 @@ function calcMaxRank(totalLevel) {
   return totalLevel;
 }
 
-function getAbilityBonus(raceId, races, stat) {
+function getAbilityBonus(raceId, races, stat, bonusChoice) {
   const race = races.find(r => r.id === raceId);
   if (!race || !race.ability_bonuses) return 0;
+  if (race.ability_bonuses.any !== undefined && bonusChoice === stat) return race.ability_bonuses.any;
   return race.ability_bonuses[stat] || 0;
 }
 

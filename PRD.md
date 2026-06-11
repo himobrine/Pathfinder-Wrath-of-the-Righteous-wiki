@@ -242,48 +242,330 @@ const ALIGNMENTS = {
 
 **职业**
 
+核心数据文件：`data/classes/{id}.json`，特征文件：`data/features/{id}.json`。
+完整规范见 `data/schemas/class.json` 和 `data/schemas/feature.json`。
+
 ```json
 {
-  "id": "paladin",
-  "name": "圣武士",
-  "alignment_restrict": ["lg"],
-  "deity_required": true,
-  "deity_recommended": ["iomedae"],
-  "hit_die": 10,
-  "bab_progression": "完整",
-  "saves": { "fortitude": "高", "reflex": "低", "will": "低" },
-  "skill_points_per_level": 2,
-  "class_skills": ["perception", "persuasion"],
-  "proficiencies": ["简易武器", "军用武器", "所有护甲", "盾牌"],
-  "spellcasting": { "type": "神术", "prepared": true, "caster_level": "完整" },
-  "abilities": [
-    { "level": 1, "name": "制裁邪恶", "description": "...", "uses": "魅力调整值" },
-    { "level": 1, "name": "侦测邪恶", "description": "..." }
+  "id": "oracle",
+  "name": "先知",
+  "name_en": "Oracle",
+  "description": "诸神通过许多代行者实行己意，但其中最高深莫测的恐怕莫过于先知了。",
+
+  "alignment_restrict": null,
+  "deity_required": false,
+  "deity_recommended": [],
+
+  "hit_die": 8,
+  "bab_progression": "中等",
+
+  "saves": { "fortitude": "低", "reflex": "低", "will": "高" },
+
+  "skill_points_per_level": 4,
+  "class_skills": ["athletics", "craft", "diplomacy", "heal", "perception", "spellcraft"],
+
+  "proficiencies": {
+    "weapons": ["simple_weapons"],
+    "armors": ["light_armor", "medium_armor"],
+    "shields": ["light_shield", "heavy_shield"],
+    "excluded": ["tower_shield"],
+    "summary": "先知擅长使用所有简易武器，轻型盔甲，中型盔甲和盾牌（不包括塔盾）。"
+  },
+
+  "spellcasting": {
+    "type": "神术",
+    "prepared": false,
+    "caster_level": "完整",
+    "casting_ability": "魅力",
+    "max_spell_level": 9,
+    "note": "先知作为自发施法者，无需准备法术即可施放已知法术。"
+  },
+
+  "class_features": [
+    { "feature_ref": "light_armor_proficiency",  "level": 1 },
+    { "feature_ref": "medium_armor_proficiency", "level": 1 },
+    { "feature_ref": "shield_proficiency",       "level": 1 },
+    { "feature_ref": "simple_weapon_proficiency","level": 1 },
+    { "feature_ref": "oracle_curse",             "level": 1 },
+    { "feature_ref": "oracle_mystery",           "level": 1 },
+    { "feature_ref": "oracle_revelation_1",      "level": 1 },
+    { "feature_ref": "oracle_revelation_3",      "level": 3 },
+    { "feature_ref": "oracle_revelation_7",      "level": 7 },
+    { "feature_ref": "oracle_revelation_11",     "level": 11 },
+    { "feature_ref": "oracle_revelation_15",     "level": 15 },
+    { "feature_ref": "oracle_final_revelation",  "level": 19 }
   ],
-  "description": "圣武士是正义的化身..."
+
+  "favored_class_bonuses": [
+    { "race": "human",    "bonus": "先知已知法术 +1（必须比最高可施展法术环低至少1级）" },
+    { "race": "half_elf", "bonus": "先知已知法术 +1（必须比最高可施展法术环低至少1级）" },
+    { "race": "aasimar",  "bonus": "对抗诅咒、疾病和毒素的豁免 +1" }
+  ],
+
+  "typical_roles": ["施法者", "辅助", "治疗者", "战斗施法者"],
+  "special_notes": "先知作为神术施法者，穿戴盔甲不会导致奥术失败率，可以正常施法。",
+  "source": "Pathfinder: Wrath of the Righteous"
+}
+```
+
+| 字段 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|:----:|:------:|------|
+| `id` | string | ✅ | — | 唯一标识符，snake_case |
+| `name` | string | ✅ | — | 中文职业名 |
+| `name_en` | string | ✅ | — | 英文职业名 |
+| `description` | string | ✅ | — | 职业描述 |
+| `alignment_restrict` | string[] \| null | ❌ | `null` | 可选阵营 id 列表，`null`=无限制 |
+| `deity_required` | boolean | ❌ | `false` | 是否强制要求信仰神祇 |
+| `deity_recommended` | string[] | ❌ | `[]` | 推荐神祇 id 列表 |
+| `hit_die` | number | ✅ | — | 生命骰大小（如 10 表示 d10） |
+| `bab_progression` | string | ✅ | — | BAB 成长：`"完整"` / `"中等"` / `"低"` |
+| `saves` | object | ✅ | — | 豁免成长：`{fortitude, reflex, will}` 值均为 `"高"`/`"低"` |
+| `skill_points_per_level` | number | ✅ | — | 每级技能点数 |
+| `class_skills` | string[] | ✅ | `[]` | 职业技能 id 列表（引用 skills.json） |
+| `proficiencies` | object | ✅ | — | 擅长能力结构化对象，见下表 |
+| `spellcasting` | object \| null | ❌ | `null` | 施法能力对象，非施法职业为 `null`，见下表 |
+| `class_features` | object[] | ✅ | `[]` | 职业特征引用数组，通过 `feature_ref` 关联 `data/features/` 下的特征文件，见下表 |
+| `favored_class_bonuses` | object[] | ❌ | `[]` | 种族偏好职业加值数组：`{race, bonus}` |
+| `typical_roles` | string[] | ❌ | `[]` | 典型定位标签，用于 Build 分类/推荐 |
+| `special_notes` | string | ❌ | — | 特殊规则说明（如奥术失败率豁免） |
+| `source` | string | ❌ | — | 数据来源 |
+
+**`proficiencies` 子字段**:
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|:----:|------|
+| `weapons` | string[] | ✅ | 武器擅长 id 列表（引用 weapons.json） |
+| `armors` | string[] | ✅ | 盔甲擅长 id 列表 |
+| `shields` | string[] | ✅ | 盾牌擅长 id 列表 |
+| `excluded` | string[] | ✅ | 明确不擅长的项目 id 列表，无排除项则为 `[]` |
+| `summary` | string | ✅ | 便于前端展示的文本摘要 |
+
+**`spellcasting` 子字段**:
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|:----:|------|
+| `type` | string | ✅ | `"神术"` / `"奥术"` |
+| `prepared` | boolean | ✅ | `true`=准备施法，`false`=自发施法 |
+| `caster_level` | string | ✅ | `"完整"` / `"中等"` / `"低"` |
+| `casting_ability` | string \| null | ✅ | 施法关键属性，如 `"魅力"`、`"感知"` |
+| `max_spell_level` | number | ✅ | 最高法术环位（0-9） |
+| `note` | string | ❌ | 施法相关特殊说明 |
+
+**`class_features[]` 元素字段**:
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|:----:|------|
+| `feature_ref` | string | ✅ | 引用 `data/features/{id}.json` 的特征 ID |
+| `level` | number | ✅ | 获取该特征的等级 |
+| `uses` | string \| null | ❌ | 每日使用次数表达式（覆盖特征定义），如 `"魅力调整值"` |
+| `note` | string | ❌ | 该等级引用的额外说明 |
+
+**特征数据模型**（`data/features/{id}.json`）:
+
+```json
+{
+  "id": "oracle_curse",
+  "name": "先知诅咒",
+  "name_en": "Oracle's Curse",
+  "type": "职业特性",
+  "description": "每个先知都背负着诅咒，这些诅咒既是惩罚也是力量的来源。",
+  "sub_features": [
+    { "level": 1,  "name": "诅咒初始效果", "description": "诅咒的初始显现效果。" },
+    { "level": 5,  "name": "诅咒第二阶",   "description": "诅咒效果增强。" },
+    { "level": 10, "name": "诅咒第三阶",   "description": "诅咒效果进一步增强。" },
+    { "level": 15, "name": "诅咒最终阶",   "description": "诅咒达到最终形态。" }
+  ]
 }
 ```
 
 | 字段 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| `id` | string | ✅ | 唯一标识符 |
-| `name` | string | ✅ | 中文职业名 |
-| `alignment_restrict` | string[] | ❌ | 可选阵营 id 列表，引用 `ALIGNMENTS` |
-| `deity_required` | boolean | ❌ | 是否强制要求信仰神祇 |
-| `deity_recommended` | string[] | ❌ | 推荐神祇 id 列表 |
-| `hit_die` | number | ✅ | 生命骰大小（如 10 表示 d10） |
-| `bab_progression` | string | ✅ | BAB 成长："完整" / "中等" / "低" |
-| `saves` | object | ✅ | 豁免成长：`{fortitude, reflex, will}` 值均为"高"/"低" |
-| `skill_points_per_level` | number | ✅ | 每级技能点数 |
-| `class_skills` | string[] | ✅ | 职业技能 id 列表（引用 skills.json） |
-| `proficiencies` | string[] | ✅ | 擅长列表（武器/护甲/盾牌描述字符串） |
-| `spellcasting` | object | ❌ | 施法能力对象：`type`="神术"/"奥术", `prepared`=boolean, `caster_level`="完整"/"中等"/"低" |
-| `abilities` | object[] | ✅ | 职业能力数组：`level`, `name`, `description`, `uses`（可选） |
-| `description` | string | ✅ | 职业描述 |
+|------|------|:----:|------|
+| `id` | string | ✅ | 唯一标识符，snake_case。通用特征直接命名（如 `light_armor_proficiency`），职业专属特征加前缀（如 `oracle_curse`） |
+| `name` | string | ✅ | 中文特征名 |
+| `name_en` | string | ❌ | 英文特征名 |
+| `type` | string | ✅ | 特征分类：`"职业特性"` / `"额外专长"`（可扩展） |
+| `description` | string | ✅ | 特征描述 |
+| `sub_features` | object[] | ❌ | 子特性数组，用于分阶段成长的特征，见下表 |
+
+**`sub_features[]` 元素字段**:
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|:----:|------|
+| `level` | number | ✅ | 子能力获取等级 |
+| `name` | string | ✅ | 子能力名 |
+| `description` | string | ✅ | 子能力描述 |
+
+**前端加载示例**:
+
+```js
+async function loadClass(clsId) {
+  const cls = await loadJSON(`data/classes/${clsId}.json`);
+  cls.class_features = await Promise.all(
+    cls.class_features.map(async ref => {
+      const feat = await loadJSON(`data/features/${ref.feature_ref}.json`);
+      return { ...feat, level: ref.level, ...(ref.uses && {uses: ref.uses}), ...(ref.note && {note: ref.note}) };
+    })
+  );
+  return cls;
+}
+```
 
 ---
 
-**专长（含神话专长）**
+**子职业（Archetype/变体职业）**
+
+子职业以 delta（差分）方式描述对基础职业的修改，数据文件路径：`data/archetypes/{id}.json`，完整规范见 `data/schemas/archetype.json`。
+
+核心机制：
+- **直接字段覆盖**：`alignment_restrict`、`class_skills` 等不写在 archetype 中则继承基础职业
+- **`replaces[]`**：替换或删除基础职业的特征。`replacement` 非 `null` 时引用 `data/features/{id}.json`；`null` 表示仅删除不替换
+- **`adds[]`**：新增的独有能力，内联定义（不写入 `data/features/`）
+- **`spell_list`**：法术表的增删差分
+
+```json
+{
+  "id": "paladin_oath_of_vengeance",
+  "name": "复仇誓约",
+  "name_en": "Oath of Vengeance",
+  "base_class": "paladin",
+  "description": "复仇誓约的圣武士放弃防御性的恩典来追求彻底毁灭邪恶的力量。",
+
+  "alignment_restrict": ["lg", "ln", "le"],
+  "deity_required": false,
+
+  "class_skills": ["perception", "persuasion", "intimidate"],
+
+  "replaces": [
+    { "original": "paladin_smite_evil",       "replacement": "paladin_vengeful_smite",  "level": 1 },
+    { "original": "paladin_divine_grace",      "replacement": null,                      "level": 2 },
+    { "original": "paladin_aura_of_courage",   "replacement": "paladin_aura_of_vengeance","level": 4 }
+  ],
+
+  "adds": [
+    {
+      "id": "paladin_abjuring_aura",
+      "name": "封印恩典",
+      "name_en": "Abjuring Aura",
+      "level": 8,
+      "ability_type": "超自然",
+      "description": "圣武士获得法术抗力，数值等于 10 + 圣武士等级。"
+    },
+    {
+      "id": "paladin_righteous_aura",
+      "name": "正义恩典",
+      "name_en": "Righteous Aura",
+      "level": 14,
+      "ability_type": "超自然",
+      "description": "10英尺内的盟友在攻击检定上获得圣武士魅力调整值的士气加值。"
+    }
+  ],
+
+  "spell_list": {
+    "adds": [
+      { "spell_ref": "fear", "level": 1 },
+      { "spell_ref": "vampiric_touch", "level": 2 }
+    ],
+    "removes": [
+      { "spell_ref": "bless", "level": 1 }
+    ]
+  },
+
+  "source": "Pathfinder: Wrath of the Righteous"
+}
+```
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|:----:|------|
+| `id` | string | ✅ | 唯一标识符，格式 `{base_class}_{archetype}` |
+| `name` | string | ✅ | 中文名 |
+| `name_en` | string | ✅ | 英文名 |
+| `base_class` | string | ✅ | 基础职业 id，引用 `data/classes/{id}.json` |
+| `description` | string | ✅ | 子职业描述 |
+| `alignment_restrict` | string[] \| null | ❌ | 覆盖基础职业的阵营限制 |
+| `deity_required` | boolean | ❌ | 覆盖基础职业的神祇需求 |
+| `hit_die` | number | ❌ | 覆盖生命骰 |
+| `bab_progression` | string | ❌ | 覆盖 BAB 成长 |
+| `saves` | object | ❌ | 覆盖豁免成长 |
+| `skill_points_per_level` | number | ❌ | 覆盖技能点数 |
+| `class_skills` | string[] | ❌ | 完整覆盖职业技能列表（非追加） |
+| `proficiencies` | object | ❌ | 覆盖擅长能力 |
+| `spellcasting` | object \| null | ❌ | 覆盖施法能力 |
+| `replaces` | object[] | ❌ | 特征替换数组，见下表 |
+| `adds` | object[] | ❌ | 新增特征数组（内联定义），见下表 |
+| `spell_list` | object | ❌ | 法术表差分：`{adds, removes}` |
+| `source` | string | ❌ | 数据来源 |
+
+**`replaces[]` 元素**:
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|:----:|------|
+| `original` | string | ✅ | 被替换的基础职业特征 `feature_ref` |
+| `replacement` | string \| null | ✅ | 替换特征 id（对应 `data/features/{id}.json`），`null` = 只删除 |
+| `level` | number | ✅ | 替换发生的等级 |
+
+**`adds[]` 元素**:
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|:----:|------|
+| `id` | string | ✅ | 唯一标识符 |
+| `name` | string | ✅ | 中文名 |
+| `name_en` | string | ❌ | 英文名 |
+| `level` | number | ✅ | 获取等级 |
+| `ability_type` | string | ✅ | 能力类型：`"职业特性" \| "特异" \| "超自然" \| "类法术"` |
+| `description` | string | ✅ | 特征描述 |
+| `usage` | string | ❌ | 每日使用次数表达式，如 `"魅力调整值"` |
+| `action` | string | ❌ | 动作类型，如 `"标准动作"` |
+| `duration` | string | ❌ | 持续时间 |
+| `save_dc` | string | ❌ | 豁免 DC 表达式 |
+| `scaling` | object | ❌ | 等级成长描述 |
+
+**`spell_list` 子字段**:
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|:----:|------|
+| `adds` | object[] | ❌ | 追加的法术：`{spell_ref, level}` |
+| `removes` | object[] | ❌ | 移除的法术：`{spell_ref, level}` |
+
+**前端加载逻辑**（加载子职业时合入基础职业）：
+
+```js
+async function loadClassWithArchetype(clsId, archetypeId) {
+  let cls = await loadClass(clsId);
+  if (!archetypeId) return cls;
+
+  const arch = await loadJSON(`data/archetypes/${archetypeId}.json`);
+
+  // 1. 核心字段覆盖
+  for (const key of ['alignment_restrict','deity_required','hit_die','bab_progression',
+                     'saves','skill_points_per_level','class_skills','proficiencies','spellcasting']) {
+    if (arch[key] !== undefined) cls[key] = arch[key];
+  }
+
+  // 2. 处理 replaces
+  cls.class_features = cls.class_features.filter(f =>
+    !arch.replaces?.some(r => r.original === f.feature_ref && r.replacement === null)
+  );
+  for (const r of (arch.replaces || [])) {
+    if (r.replacement === null) continue;
+    const feat = await loadJSON(`data/features/${r.replacement}.json`);
+    const idx = cls.class_features.findIndex(f => f.feature_ref === r.original);
+    if (idx >= 0) cls.class_features[idx] = { ...feat, level: r.level };
+    else cls.class_features.push({ ...feat, level: r.level });
+  }
+
+  // 3. 处理 adds
+  for (const a of (arch.adds || [])) {
+    cls.class_features.push({ ...a });
+  }
+
+  // 4. 法术表 delta
+  if (arch.spell_list) cls.spell_modifiers = arch.spell_list;
+
+  return cls;
+}
+```
+
+---
 
 ```json
 {

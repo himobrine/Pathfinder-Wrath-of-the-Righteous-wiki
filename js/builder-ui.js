@@ -6,10 +6,17 @@ function renderRaceStep(app) {
   html += `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;">`;
   for (const r of races) {
     const isSelected = selected === r.id;
-    const bonuses = r.ability_bonuses ? Object.entries(r.ability_bonuses).map(([k, v]) => `${STAT_NAMES[k]} ${v > 0 ? "+" : ""}${v}`).join(", ") : "无";
+    let bonusText = "无";
+    if (r.ability_bonuses) {
+      if (r.ability_bonuses.any !== undefined) {
+        bonusText = r.ability_bonus_desc || `任意属性 +${r.ability_bonuses.any}`;
+      } else {
+        bonusText = Object.entries(r.ability_bonuses).map(([k, v]) => `${STAT_NAMES[k]} ${v > 0 ? "+" : ""}${v}`).join(", ");
+      }
+    }
     html += `<div class="card ${isSelected ? 'active' : ''}" style="${isSelected ? 'border-color:var(--accent);box-shadow:0 0 0 2px var(--accent);' : ''}" onclick="builderApp.selectRace('${r.id}')">
       <h3>${r.name}</h3>
-      <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:4px;"><strong>属性加值：</strong>${bonuses}</p>
+      <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:4px;"><strong>属性加值：</strong>${bonusText}</p>
       <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:4px;"><strong>速度：</strong>${r.speed} 英尺</p>
       <p style="font-size:0.78rem;color:var(--text-secondary);">${(r.description || "").slice(0, 100)}</p>
     </div>`;
@@ -21,6 +28,7 @@ function renderRaceStep(app) {
 
 BuilderApp.prototype.selectRace = function(id) {
   this.build.race = id;
+  this.build.ability_bonus_choice = null;
   if (!this.build.alignment) this.build.alignment = "lg";
   this.render();
   this.saveBuild();
@@ -29,10 +37,23 @@ BuilderApp.prototype.selectRace = function(id) {
 // Step 2: Attributes
 function renderAttributesStep(app) {
   const attrs = app.build.attributes;
-  const raceBonus = app.build.race ? getAbilityBonus(app.build.race, app.data.races) : {};
+  const race = app.currentRace;
+  const hasAnyBonus = race && race.ability_bonuses && race.ability_bonuses.any !== undefined;
   const total = app.pointBuyTotal;
   const remaining = 20 - total;
   let html = `<div class="builder-panel"><h2>属性分配（20点购点）</h2><p style="color:var(--text-secondary);margin-bottom:12px;font-size:0.88rem;">剩余可用点数：<strong style="color:${remaining >= 0 ? 'var(--accent)' : 'red'};">${remaining}</strong> / 20</p>`;
+
+  if (hasAnyBonus) {
+    const choice = app.build.ability_bonus_choice;
+    html += `<div style="margin-bottom:16px;padding:12px;border:1px solid var(--accent);border-radius:var(--radius);background:rgba(0,102,204,0.05);">`;
+    html += `<p style="font-size:0.85rem;margin-bottom:8px;"><strong>${race.ability_bonus_desc || `任意属性 +${race.ability_bonuses.any}`}</strong> — 选择要加成的属性：</p>`;
+    html += `<div style="display:flex;gap:6px;flex-wrap:wrap;">`;
+    for (const s of STATS) {
+      const isChosen = choice === s;
+      html += `<button class="btn" style="${isChosen ? 'background:var(--accent);color:white;border-color:var(--accent);' : ''}" onclick="builderApp.setBonusChoice('${s}')">${STAT_NAMES[s]} ${isChosen ? '✓' : ''}</button>`;
+    }
+    html += `</div></div>`;
+  }
 
   html += `<div style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">`;
   const presets = [
@@ -50,7 +71,7 @@ function renderAttributesStep(app) {
   html += `<div class="stat-block">`;
   for (const s of STATS) {
     const base = attrs[s] || 10;
-    const bonus = raceBonus[s] || 0;
+    const bonus = hasAnyBonus ? getAbilityBonus(app.build.race, app.data.races, s, app.build.ability_bonus_choice) : 0;
     const totalVal = base + bonus;
     const mod = calcStatMod(totalVal);
     const cost = calcPointBuyCost(base);
@@ -70,6 +91,12 @@ function renderAttributesStep(app) {
   html += renderStepActions(app, remaining >= 0 && total > 0);
   return html;
 }
+
+BuilderApp.prototype.setBonusChoice = function(stat) {
+  this.build.ability_bonus_choice = stat;
+  this.render();
+  this.saveBuild();
+};
 
 BuilderApp.prototype.adjustStat = function(stat, delta) {
   const current = this.build.attributes[stat] || 10;

@@ -15,6 +15,7 @@ const DEFAULT_BUILD = {
   mythic_rank: 0,
   mythic_feats: [],
   mythic_abilities: [],
+  ability_bonus_choice: null,
   spells: [],
   mythic_spells: [],
   export_text: ""
@@ -126,7 +127,13 @@ class BuilderApp {
 
   get statValues() {
     const a = this.build.attributes;
-    const raceBonus = this.build.race ? getAbilityBonus(this.build.race, this.data.races) : {};
+    const race = this.currentRace;
+    const raceBonus = {};
+    if (race) {
+      for (const s of STATS) {
+        raceBonus[s] = getAbilityBonus(this.build.race, this.data.races, s, this.build.ability_bonus_choice);
+      }
+    }
     const result = {};
     for (const s of STATS) {
       result[s] = (a[s] || 10) + (raceBonus[s] || 0);

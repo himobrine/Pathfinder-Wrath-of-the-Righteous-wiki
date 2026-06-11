@@ -52,10 +52,21 @@ async function initRaces() {
     const term = (searchInput?.value || "").toLowerCase();
     const filtered = data.filter(r => r.name.toLowerCase().includes(term) || r.id.includes(term));
     container.innerHTML = filtered.map(r => {
-      const bonuses = Object.entries(r.ability_bonuses || {}).map(([k, v]) => `${STAT_NAMES[k] || k} ${v > 0 ? "+" : ""}${v}`).join(", ");
+      let bonusText = "无";
+      if (r.ability_bonuses) {
+        if (r.ability_bonuses.any !== undefined) {
+          bonusText = r.ability_bonus_desc || `任意 +${r.ability_bonuses.any}`;
+        } else {
+          bonusText = Object.entries(r.ability_bonuses).map(([k, v]) => `${STAT_NAMES[k] || k} ${v > 0 ? "+" : ""}${v}`).join(", ");
+        }
+      }
+      const traitsHtml = r.traits ? (typeof r.traits === "object" && !Array.isArray(r.traits)
+        ? Object.entries(r.traits).map(([k, v]) => `<p style="font-size:0.82rem;margin-top:2px;"><strong>${k}：</strong>${(v || "").slice(0, 60)}</p>`).join("")
+        : (Array.isArray(r.traits) ? r.traits.map(t => `<p style="font-size:0.82rem;margin-top:2px;">${t}</p>`).join("") : "")) : "";
       return `<div class="card">
         <h3>${r.name}</h3>
-        <p><strong>属性加值：</strong>${bonuses || "无"}</p>
+        <p><strong>属性加值：</strong>${bonusText}</p>
+        ${traitsHtml}
         <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:4px">${(r.description || "").slice(0, 120)}</p>
       </div>`;
     }).join("");

@@ -14,14 +14,25 @@ function generateBuildText(build, data) {
 
   lines.push("");
   lines.push("属性:");
-  const v = {};
-  const raceBonus = build.race ? getAbilityBonus(build.race, data.races) : {};
+  const raceObj = build.race ? data.races.find(r => r.id === build.race) : null;
+  const hasAnyBonus = raceObj && raceObj.ability_bonuses && raceObj.ability_bonuses.any !== undefined;
   for (const s of STATS) {
     const base = build.attributes[s] || 10;
-    const bonus = raceBonus[s] || 0;
+    const bonus = hasAnyBonus ? getAbilityBonus(build.race, data.races, s, build.ability_bonus_choice) : 0;
     const total = base + bonus;
     const mod = calcStatMod(total);
-    lines.push(`  ${STAT_NAMES[s]}: ${total} (${mod >= 0 ? '+' : ''}${mod}) [基础${base}${bonus ? ` 种族+${bonus}` : ""}]`);
+    let bonusLabel = "";
+    if (bonus) {
+      if (hasAnyBonus && build.ability_bonus_choice === s) {
+        bonusLabel = ` 种族+${bonus}(已选)`;
+      } else {
+        bonusLabel = ` 种族+${bonus}`;
+      }
+    }
+    lines.push(`  ${STAT_NAMES[s]}: ${total} (${mod >= 0 ? '+' : ''}${mod}) [基础${base}${bonusLabel}]`);
+  }
+  if (hasAnyBonus && raceObj.ability_bonus_desc) {
+    lines.push(`  种族加值说明: ${raceObj.ability_bonus_desc}`);
   }
 
   lines.push("");
