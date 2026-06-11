@@ -465,6 +465,18 @@ a:hover { text-decoration: underline; }
   font-family: inherit;
 }
 .race-float-close:hover { color: var(--ink); }
+.race-float-inner .trait-link,
+.race-float-inner .race-link,
+.race-float-inner .back-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+.race-float-inner .trait-link:hover,
+.race-float-inner .race-link:hover,
+.race-float-inner .back-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 /* ===== Responsive ===== */
 @media (max-width: 1068px) {

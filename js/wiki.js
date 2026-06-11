@@ -1,8 +1,12 @@
+let _raceData = [];
+let _traitData = [];
+
 document.addEventListener("DOMContentLoaded", async () => {
   const path = window.location.pathname;
 
   if (path.includes("classes.html")) initClasses();
   else if (path.includes("races.html")) initRaces();
+  else if (path.includes("traits.html")) initTraits();
   else if (path.includes("feats.html")) initFeats();
   else if (path.includes("spells.html")) initSpells();
   else if (path.includes("mythic-paths.html")) initMythicPaths();
@@ -43,7 +47,10 @@ async function initClasses() {
 }
 
 async function initRaces() {
-  const data = await loadData("races");
+  const results = await Promise.all([loadData("races"), loadData("traits")]);
+  _raceData = results[0];
+  _traitData = results[1];
+  const data = _raceData;
   const container = document.getElementById("race-list");
   const searchInput = document.getElementById("race-search");
   if (!container) return;
@@ -78,6 +85,15 @@ async function initRaces() {
   searchInput?.addEventListener("input", render);
 }
 
+function findTrait(matchText) {
+  return _traitData.find(t => t.match === matchText) || null;
+}
+
+function getRaceName(raceId) {
+  const r = _raceData.find(d => d.id === raceId);
+  return r ? r.name : raceId;
+}
+
 function showRaceDetail(r) {
   const existing = document.querySelector(".race-float-window");
   if (existing) existing.remove();
@@ -94,9 +110,21 @@ function showRaceDetail(r) {
   let traitsHtml = "";
   if (r.traits) {
     if (typeof r.traits === "object" && !Array.isArray(r.traits)) {
-      traitsHtml = Object.entries(r.traits).map(([k, v]) => `<p style="margin-top:6px"><strong>${k}：</strong>${v}</p>`).join("");
+      traitsHtml = Object.entries(r.traits).map(([k, v]) => {
+        const t = findTrait(k);
+        if (t) {
+          return `<p style="margin-top:6px"><strong><a href="#" class="trait-link" data-trait-id="${t.id}" data-race-id="${r.id}">${k}</a>：</strong>${(v || "").slice(0, 80)}${v && v.length > 80 ? "…" : ""}</p>`;
+        }
+        return `<p style="margin-top:6px"><strong>${k}：</strong>${(v || "").slice(0, 80)}${v && v.length > 80 ? "…" : ""}</p>`;
+      }).join("");
     } else if (Array.isArray(r.traits)) {
-      traitsHtml = r.traits.map(t => `<p style="margin-top:6px">${t}</p>`).join("");
+      traitsHtml = r.traits.map(t => {
+        const trait = findTrait(t);
+        if (trait) {
+          return `<p style="margin-top:6px"><a href="#" class="trait-link" data-trait-id="${trait.id}" data-race-id="${r.id}">${t.length > 60 ? t.slice(0, 60) + "…" : t}</a></p>`;
+        }
+        return `<p style="margin-top:6px">${t}</p>`;
+      }).join("");
     }
   }
 
@@ -116,6 +144,66 @@ function showRaceDetail(r) {
   document.body.appendChild(el);
 
   el.querySelector(".race-float-close").addEventListener("click", () => el.remove());
+
+  el.querySelectorAll(".trait-link").forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const tid = a.dataset.traitId;
+      const trait = _traitData.find(t => t.id === tid);
+      const rid = a.dataset.raceId;
+      if (trait) showTraitDetail(trait, rid);
+    });
+  });
+
+  const onKeyDown = (e) => {
+    if (e.key === "Escape") { el.remove(); document.removeEventListener("keydown", onKeyDown); }
+  };
+  document.addEventListener("keydown", onKeyDown);
+}
+
+function showTraitDetail(t, fromRaceId) {
+  const existing = document.querySelector(".race-float-window");
+  if (existing) existing.remove();
+
+  const raceLinks = t.races.map(rid => {
+    const name = getRaceName(rid);
+    return `<a href="#" class="race-link" data-race-id="${rid}">${name}</a>`;
+  }).join("、");
+
+  const el = document.createElement("div");
+  el.className = "race-float-window";
+  el.innerHTML = `
+    <div class="race-float-inner">
+      <button class="race-float-close">&times;</button>
+      <p style="margin-bottom:8px">${fromRaceId ? `<a href="#" class="back-link" data-race-id="${fromRaceId}">← 返回 ${getRaceName(fromRaceId)}</a>` : ""}</p>
+      <h2 style="font-size:1.3rem;font-weight:600">${t.name}</h2>
+      <p style="margin-top:12px;line-height:1.7;color:var(--ink-muted-80);font-size:0.9rem">${t.description}</p>
+      <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline)">
+        <p style="font-size:0.85rem;color:var(--ink-muted-48)"><strong>拥有此特性的种族：</strong></p>
+        <p style="margin-top:6px">${raceLinks}</p>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(el);
+
+  el.querySelector(".race-float-close").addEventListener("click", () => el.remove());
+
+  const backLink = el.querySelector(".back-link");
+  if (backLink) {
+    backLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      const race = _raceData.find(d => d.id === backLink.dataset.raceId);
+      if (race) showRaceDetail(race);
+    });
+  }
+
+  el.querySelectorAll(".race-link").forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const race = _raceData.find(d => d.id === a.dataset.raceId);
+      if (race) showRaceDetail(race);
+    });
+  });
 
   const onKeyDown = (e) => {
     if (e.key === "Escape") { el.remove(); document.removeEventListener("keydown", onKeyDown); }
@@ -195,6 +283,37 @@ async function initSpells() {
   render();
   searchInput?.addEventListener("input", render);
   schoolFilter?.addEventListener("change", render);
+}
+
+async function initTraits() {
+  const results = await Promise.all([loadData("traits"), loadData("races")]);
+  _traitData = results[0];
+  _raceData = results[1];
+  const data = _traitData;
+  const container = document.getElementById("trait-list");
+  const searchInput = document.getElementById("trait-search");
+  if (!container) return;
+
+  function render() {
+    const term = (searchInput?.value || "").toLowerCase();
+    const filtered = data.filter(t => t.name.toLowerCase().includes(term) || t.id.includes(term));
+    container.innerHTML = filtered.map(t => {
+      const shortDesc = t.description.length > 60 ? t.description.slice(0, 60) + "…" : t.description;
+      return `<div class="card" data-trait-id="${t.id}">
+        <h3>${t.name}</h3>
+        <p style="margin-top:4px;font-size:0.85rem;color:var(--ink-muted-48)">${shortDesc}</p>
+        <p style="margin-top:8px;color:var(--accent);font-size:0.82rem">▶ 点击查看详情</p>
+      </div>`;
+    }).join("");
+    container.querySelectorAll(".card").forEach(el => {
+      el.addEventListener("click", () => {
+        const trait = data.find(d => d.id === el.dataset.traitId);
+        if (trait) showTraitDetail(trait);
+      });
+    });
+  }
+  render();
+  searchInput?.addEventListener("input", render);
 }
 
 async function initMythicPaths() {

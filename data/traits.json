@@ -1,0 +1,233 @@
+[
+  {
+    "id": "human-feat",
+    "name": "专长",
+    "description": "专长代表角色所掌握的能力。专长通常能使角色绕开规则的制约。在1级时，以及之后每升2级，角色都可以获得一个专长。人类1级时可获得1个额外专长。",
+    "match": "专长",
+    "races": ["human"]
+  },
+  {
+    "id": "skilled",
+    "name": "技不压身",
+    "description": "人类在1级时获得一个额外技能点，并在每次升级时都获得一个额外技能点。",
+    "match": "技不压身",
+    "races": ["human"]
+  },
+  {
+    "id": "darkvision-60",
+    "name": "黑暗视觉",
+    "description": "黑暗视觉：60英尺。在黑暗中，拥有黑暗视觉的生物可以看见60英尺内的物体，但只能看到黑白两色。",
+    "match": "黑暗视觉：60英尺",
+    "races": ["dwarf", "half-orc", "tiefling", "aasimar", "dhampir"]
+  },
+  {
+    "id": "defensive-training",
+    "name": "防御训练",
+    "description": "防御训练：对抗巨人类生物时AC+4闪避加值。矮人由于世代与巨人作战，学会了闪避巨人攻击的技巧。",
+    "match": "防御训练：对抗巨人类生物时AC+4闪避加值",
+    "races": ["dwarf"]
+  },
+  {
+    "id": "hardy",
+    "name": "坚韧",
+    "description": "坚韧：对抗毒素、法术和类法术能力时豁免+2。矮人天生具有抵抗毒素和魔法的能力。",
+    "match": "坚韧：对抗毒素、法术和类法术能力时豁免+2",
+    "races": ["dwarf"]
+  },
+  {
+    "id": "stonecunning",
+    "name": "岩石敏锐",
+    "description": "岩石敏锐：察觉岩石中的异常时+2加值。矮人擅长在岩石环境中发现陷阱、暗门等异常。",
+    "match": "岩石敏锐：察觉岩石中的异常时+2加值",
+    "races": ["dwarf"]
+  },
+  {
+    "id": "elf-immunity-full",
+    "name": "精灵免疫",
+    "description": "精灵免疫：对抗睡眠效果免疫，对抗惑控系法术+2豁免。精灵对睡眠效果完全免疫，同时对惑控系法术有额外的抗力。",
+    "match": "精灵免疫：对抗睡眠效果免疫，对抗惑控系法术+2豁免",
+    "races": ["elf"]
+  },
+  {
+    "id": "low-light-vision",
+    "name": "低光视觉",
+    "description": "低光视觉。在星光、月光和火炬等低光条件下，拥有低光视觉的生物可以看得比人类更远。",
+    "match": "低光视觉",
+    "races": ["elf", "half-elf", "gnome", "kitsune"]
+  },
+  {
+    "id": "weapon-proficiency-elf",
+    "name": "武器熟悉",
+    "description": "武器熟悉：擅长长剑、细剑、长弓、短弓。精灵天生擅长使用这些传统武器。",
+    "match": "武器熟悉：擅长长剑、细剑、长弓、短弓",
+    "races": ["elf"]
+  },
+  {
+    "id": "keen-senses",
+    "name": "敏锐感官",
+    "description": "敏锐感官：察觉+2。精灵的感官非常敏锐，能轻易发现隐藏的细节。",
+    "match": "敏锐感官：察觉+2",
+    "races": ["elf"]
+  },
+  {
+    "id": "elf-immunity-sleep",
+    "name": "精灵免疫",
+    "description": "精灵免疫：对抗睡眠效果免疫。半精灵继承了精灵对睡眠效果的免疫力。",
+    "match": "精灵免疫：对抗睡眠效果免疫",
+    "races": ["half-elf"]
+  },
+  {
+    "id": "skill-focus",
+    "name": "技能专攻",
+    "description": "技能专攻：选择一项技能获得+2种族加值。半精灵可以在一项技能上获得额外的训练加成。",
+    "match": "技能专攻：选择一项技能获得+2种族加值",
+    "races": ["half-elf"]
+  },
+  {
+    "id": "adaptability",
+    "name": "适应力",
+    "description": "适应力：获得技能专攻（任意）。半精灵拥有出色的适应能力，可以获得一个额外的技能专攻专长。",
+    "match": "适应力：获得技能专攻（任意）",
+    "races": ["half-elf"]
+  },
+  {
+    "id": "intimidating",
+    "name": "威吓",
+    "description": "威吓：威吓+2。半兽人天生具有令人生畏的气质。",
+    "match": "威吓：威吓+2",
+    "races": ["half-orc"]
+  },
+  {
+    "id": "orc-ferocity",
+    "name": "兽人凶猛",
+    "description": "兽人凶猛：生命值降至0以下时可继续战斗1轮。即使受到致命伤害，半兽人也能在倒下前继续战斗短暂的时间。",
+    "match": "兽人凶猛：生命值降至0以下时可继续战斗1轮",
+    "races": ["half-orc"]
+  },
+  {
+    "id": "weapon-proficiency-orc",
+    "name": "武器熟悉",
+    "description": "武器熟悉：擅长所有兽人武器。半兽人天生擅长使用兽人传统武器。",
+    "match": "武器熟悉：擅长所有兽人武器",
+    "races": ["half-orc"]
+  },
+  {
+    "id": "small-size",
+    "name": "小型体型",
+    "description": "小型体型：AC+1，攻击+1，CMB-1，隐匿+4。小型生物在战斗中获得闪避和命中的优势，但在冲撞和擒抱等战技方面较弱，同时因体型小巧而更容易隐藏。",
+    "match": "小型体型：AC+1，攻击+1，CMB-1，隐匿+4",
+    "races": ["halfling", "gnome"]
+  },
+  {
+    "id": "fearless",
+    "name": "无畏",
+    "description": "无畏：对抗恐惧时豁免+2。半身人以其勇气闻名，天生不易被恐惧所压倒。",
+    "match": " fearless：对抗恐惧时豁免+2",
+    "races": ["halfling"]
+  },
+  {
+    "id": "halfling-luck",
+    "name": "半身人幸运",
+    "description": "半身人幸运：所有豁免+1。半身人天生拥有不可思议的好运，任何危及自身的情况都能化险为夷。",
+    "match": "半身人幸运：所有豁免+1",
+    "races": ["halfling"]
+  },
+  {
+    "id": "precise-throw",
+    "name": "精准投掷",
+    "description": "精准投掷：投掷武器攻击+1。半身人擅长投掷武器，能利用其精准的投掷技巧弥补力量的不足。",
+    "match": "精准投掷：投掷武器攻击+1",
+    "races": ["halfling"]
+  },
+  {
+    "id": "gnome-magic",
+    "name": "侏儒魔法",
+    "description": "侏儒魔法：DC=10+1/2等级+魅调的任意法术每日1次。侏儒与魔法有着天然的联系，每日可以使用一次类法术能力。",
+    "match": "侏儒魔法：DC=10+1/2等级+魅调的任意法术每日1次",
+    "races": ["gnome"]
+  },
+  {
+    "id": "illusion-resistance",
+    "name": "幻术抗力",
+    "description": "对抗幻术+2豁免。侏儒天生对幻术有较强的抵抗力。",
+    "match": "对抗幻术+2豁免",
+    "races": ["gnome"]
+  },
+  {
+    "id": "fey-foe",
+    "name": "精类宿敌",
+    "description": "对抗精类生物+2攻击。侏儒对精类生物有着深刻的理解，擅长对付这些宿敌。",
+    "match": "对抗精类生物+2攻击",
+    "races": ["gnome"]
+  },
+  {
+    "id": "elemental-resistance",
+    "name": "能量抗力",
+    "description": "寒冷抗性5、闪电抗性5、火焰抗性5。魔裔拥有下层位面的血统，对各种能量伤害有较强的抵抗力。",
+    "match": "寒冷抗性5、闪电抗性5、火焰抗性5",
+    "races": ["tiefling"]
+  },
+  {
+    "id": "darkness-spell",
+    "name": "类法术能力：黑暗术",
+    "description": "类法术能力：黑暗术每日1次。魔裔可以使用黑暗术作为类法术能力。",
+    "match": "类法术能力：黑暗术每日1次",
+    "races": ["tiefling"]
+  },
+  {
+    "id": "light-resistance",
+    "name": "强光抗力",
+    "description": "强光抗力：火焰抗性5、强酸抗性5。神裔拥有天界血统，对火焰和强酸有抵抗力。",
+    "match": "强光抗力：火焰抗性5、强酸抗性5",
+    "races": ["aasimar"]
+  },
+  {
+    "id": "daylight-spell",
+    "name": "类法术能力：昼明术",
+    "description": "类法术能力：昼明术每日1次。神裔可以使用昼明术作为类法术能力。",
+    "match": "类法术能力：昼明术每日1次",
+    "races": ["aasimar"]
+  },
+  {
+    "id": "skill-perception",
+    "name": "技能：察觉",
+    "description": "技能：察觉+2。神裔拥有敏锐的感知能力。",
+    "match": "技能：察觉+2",
+    "races": ["aasimar"]
+  },
+  {
+    "id": "negative-energy-resistance",
+    "name": "能量抗力：负能量",
+    "description": "能量抗力：负能量抗力5。吸血裔拥有不死生物的部分特质，对负能量有抗力。",
+    "match": "能量抗力：负能量抗力5",
+    "races": ["dhampir"]
+  },
+  {
+    "id": "spell-like-ability-dhampir",
+    "name": "类法术能力",
+    "description": "类法术能力：吸血裔拥有一些与吸血鬼相关的类法术能力。",
+    "match": "类法术能力：",
+    "races": ["dhampir"]
+  },
+  {
+    "id": "manipulative",
+    "name": "操控能力",
+    "description": "操控能力：对类人生物的威吓+2。吸血裔拥有令人不安的气质，在对付类人生物时尤为明显。",
+    "match": "操控能力：对类人生物的威吓+2",
+    "races": ["dhampir"]
+  },
+  {
+    "id": "change-shape",
+    "name": "变身",
+    "description": "变身：可在类人形态和狐形态间切换。狐妖拥有变身为狐狸形态的能力，可用于侦查和行动。",
+    "match": "变身：可在类人形态和狐形态间切换",
+    "races": ["kitsune"]
+  },
+  {
+    "id": "charm",
+    "name": "魅惑",
+    "description": "魅惑：每日1次魅惑类人（DC=10+1/2等级+魅调）。狐妖可以魅惑一名类人生物，使其暂时成为盟友。",
+    "match": "魅惑：每日1次魅惑类人（DC=10+1/2等级+魅调）",
+    "races": ["kitsune"]
+  }
+]
