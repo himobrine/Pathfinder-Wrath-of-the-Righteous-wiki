@@ -3,7 +3,7 @@ const DATA_CACHE = {};
 async function loadData(name) {
   if (DATA_CACHE[name]) return DATA_CACHE[name];
   try {
-    const res = await fetch(`data/${name}.json`);
+    const res = await fetch(`/data/${name}.json`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     DATA_CACHE[name] = data;
