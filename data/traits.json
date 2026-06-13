@@ -148,7 +148,7 @@
     "name": "无所畏惧",
     "description": "无所畏惧：半身人在所有对抗恐惧的豁免检定上获得+2种族加值。该加值可与半身强运所带来的加值叠加。",
     "match": "无所畏惧",
-    "img": "",
+    "img": "../assets/racial%20characteristics/fearless.png",
     "races": ["halfling"]
   },
   {
@@ -156,7 +156,7 @@
     "name": "脚踏实地",
     "description": "脚踏实地：半身人的运动和灵巧检定会获得+2种族加值。",
     "match": "脚踏实地",
-    "img": "",
+    "img": "../assets/racial%20characteristics/keep%20one%27s%20feet%20on%20the%20ground.png",
     "races": ["halfling"]
   },
   {
@@ -164,7 +164,7 @@
     "name": "半身强运",
     "description": "半身强运：半身人的所有豁免检定会获得+1种族加值。",
     "match": "半身强运",
-    "img": "",
+    "img": "../assets/racial%20characteristics/Half%20body%20strong%20luck.png",
     "races": ["halfling"]
   }
 ]
