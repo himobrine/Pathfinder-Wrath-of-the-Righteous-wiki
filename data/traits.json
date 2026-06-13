@@ -37,7 +37,7 @@
     "description": "敏锐直觉：矮人、精灵、侏儒、半精灵、半兽人、半身人、狐妖、土巨灵裔在进行察觉检定时获得+2种族加值。",
     "match": "敏锐直觉",
     "img": "../assets/racial%20characteristics/Sharp%20intuition.png",
-    "races": ["dwarf", "elf"]
+    "races": ["dwarf", "elf", "gnome"]
   },
   {
     "id": "elf-magic",
@@ -53,7 +53,7 @@
     "description": "种族传承：各种各样的地点和生活条件造成了与同胞有所区别的亚种。他们获得独特的种族特性，并失去某些常见的特性。",
     "match": "种族传承",
     "img": "../assets/racial%20characteristics/Racial%20Inheritance.png",
-    "races": ["dwarf", "elf"]
+    "races": ["dwarf", "elf", "gnome"]
   },
   {
     "id": "slow-and-steady",
@@ -85,7 +85,7 @@
     "description": "防御训练：巨人：在对抗属于巨人子类别的怪物时，矮人和侏儒的防御等级获得+4闪避增加值。",
     "match": "防御训练：巨人",
     "img": "../assets/racial%20characteristics/Defense%20Training%20Giants.png",
-    "races": ["dwarf"]
+    "races": ["dwarf", "gnome"]
   },
   {
     "id": "hated-goblinoid-orc",
@@ -102,5 +102,45 @@
     "match": "矮人武器熟练",
     "img": "../assets/racial%20characteristics/Dwarf%20weapon%20proficiency.png",
     "races": ["dwarf"]
+  },
+  {
+    "id": "hated-reptilian",
+    "name": "世代血仇：爬虫类人生物",
+    "description": "世代血仇：爬虫类人生物：在对抗属于爬虫和地精子类别的类人生物时，侏儒的攻击检定会获得+1加值，这得益于他们为应对这些痛恨的死敌而进行的特殊训练。",
+    "match": "世代血仇：爬虫类人生物",
+    "img": "../assets/racial%20characteristics/Generative%20Bloodfeud%20Reptile%20Humans.png",
+    "races": ["gnome"]
+  },
+  {
+    "id": "illusion-resistance",
+    "name": "幻术抗性",
+    "description": "幻术抗性：在对抗幻术法术或效应时，侏儒的豁免检定可获得+2种族加值。",
+    "match": "幻术抗性",
+    "img": "../assets/racial%20characteristics/Illusion%20resistance.png",
+    "races": ["gnome"]
+  },
+  {
+    "id": "gnome-magic",
+    "name": "侏儒魔力",
+    "description": "侏儒魔力：任何由侏儒所施放的幻术学派法术的豁免检定难度等级都会+1。",
+    "match": "侏儒魔力",
+    "img": "../assets/racial%20characteristics/Dwarf%20Magic.png",
+    "races": ["gnome"]
+  },
+  {
+    "id": "diligent",
+    "name": "苦心孤诣",
+    "description": "苦心孤诣：在进行知识（世界）检定时，侏儒会获得+2种族加值。",
+    "match": "苦心孤诣",
+    "img": "../assets/racial%20characteristics/try%20hard%20to.png",
+    "races": ["gnome"]
+  },
+  {
+    "id": "slow-speed",
+    "name": "缓慢移动",
+    "description": "缓慢移动：侏儒拥有20英尺的基础速度。",
+    "match": "缓慢移动",
+    "img": "../assets/racial%20characteristics/move%20slowly.png",
+    "races": ["gnome"]
   }
 ]
