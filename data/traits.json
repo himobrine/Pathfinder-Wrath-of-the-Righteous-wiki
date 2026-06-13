@@ -37,7 +37,7 @@
     "description": "敏锐直觉：矮人、精灵、侏儒、半精灵、半兽人、半身人、狐妖、土巨灵裔在进行察觉检定时获得+2种族加值。",
     "match": "敏锐直觉",
     "img": "../assets/racial%20characteristics/Sharp%20intuition.png",
-    "races": ["elf"]
+    "races": ["dwarf", "elf"]
   },
   {
     "id": "elf-magic",
@@ -53,6 +53,54 @@
     "description": "种族传承：各种各样的地点和生活条件造成了与同胞有所区别的亚种。他们获得独特的种族特性，并失去某些常见的特性。",
     "match": "种族传承",
     "img": "../assets/racial%20characteristics/Racial%20Inheritance.png",
-    "races": ["elf"]
+    "races": ["dwarf", "elf"]
+  },
+  {
+    "id": "slow-and-steady",
+    "name": "稳扎稳打",
+    "description": "稳扎稳打：矮人拥有20英尺的基本速度，但他们的速度不会受盔甲或负重影响。",
+    "match": "稳扎稳打",
+    "img": "../assets/racial%20characteristics/Slow%20and%20steady.png",
+    "races": ["dwarf"]
+  },
+  {
+    "id": "stability",
+    "name": "固若金汤",
+    "description": "固若金汤：当矮人站在地面上时，他们在对抗冲撞或绊摔时的战技防御会获得+4种族加成。",
+    "match": "固若金汤",
+    "img": "../assets/racial%20characteristics/Stability.png",
+    "races": ["dwarf"]
+  },
+  {
+    "id": "hardy",
+    "name": "坚如磐石",
+    "description": "坚如磐石：在对抗毒素、法术以及类法术能力时，矮人的豁免检定会获得+2种族加值。",
+    "match": "坚如磐石",
+    "img": "../assets/racial%20characteristics/Hardy.png",
+    "races": ["dwarf"]
+  },
+  {
+    "id": "defensive-training-giant",
+    "name": "防御训练：巨人",
+    "description": "防御训练：巨人：在对抗属于巨人子类别的怪物时，矮人和侏儒的防御等级获得+4闪避增加值。",
+    "match": "防御训练：巨人",
+    "img": "../assets/racial%20characteristics/Defensive%20training.png",
+    "races": ["dwarf"]
+  },
+  {
+    "id": "hated-goblinoid-orc",
+    "name": "世代血仇：兽人和地精",
+    "description": "世代血仇：兽人和地精：在对抗属于兽人、地精子类别的类人生物时，矮人的攻击检定会获得+1种族加成值，这得益于他们为应对这些痛恨的死敌而进行的特殊训练。",
+    "match": "世代血仇：兽人和地精",
+    "img": "../assets/racial%20characteristics/Hated.png",
+    "races": ["dwarf"]
+  },
+  {
+    "id": "weapon-proficiency-dwarf",
+    "name": "矮人武器熟练",
+    "description": "矮人武器熟练：矮人擅长使用战斧、重十字镐和战锤，并将任何名字中带有\u201c矮人\u201d词缀的武器视作军用武器。",
+    "match": "矮人武器熟练",
+    "img": "../assets/racial%20characteristics/Proficient%20in%20dwarf%20weapons.png",
+    "races": ["dwarf"]
   }
 ]
