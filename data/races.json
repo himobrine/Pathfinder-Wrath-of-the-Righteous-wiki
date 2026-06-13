@@ -64,11 +64,11 @@
   {
     "name": "侏儒",
     "id": "gnome",
-    "ability_score_increases": [
-      { "ability": "STR", "value": -2 },
-      { "ability": "CON", "value": 2 },
-      { "ability": "CHA", "value": 2 }
-    ],
+    "ability_bonuses": {
+      "strength": -2,
+      "dexterity": 2,
+      "charisma": 2
+    },
     "speed": 20,
     "traits": {
       "敏锐直觉": "矮人、精灵、侏儒、半精灵、半兽人、半身人、狐妖、土巨灵裔在进行察觉检定时获得+2种族加值。",
