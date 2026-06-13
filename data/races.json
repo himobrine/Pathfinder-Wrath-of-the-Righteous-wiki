@@ -47,7 +47,7 @@
     "ability_bonuses": {
       "dexterity": 2,
       "constitution": 2,
-      "charisma": 2
+      "charisma": -2
     },
     "traits": {
       "稳扎稳打":"矮人拥有20英尺的基本速度，但他们的速度不会受盔甲或负重影响。",
