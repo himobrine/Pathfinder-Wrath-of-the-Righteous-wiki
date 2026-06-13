@@ -60,7 +60,7 @@
     "name": "稳扎稳打",
     "description": "稳扎稳打：矮人拥有20英尺的基本速度，但他们的速度不会受盔甲或负重影响。",
     "match": "稳扎稳打",
-    "img": "../assets/racial%20characteristics/Slow%20and%20steady.png",
+    "img": "../assets/racial%20characteristics/steady%20and%20sure.png",
     "races": ["dwarf"]
   },
   {
@@ -68,7 +68,7 @@
     "name": "固若金汤",
     "description": "固若金汤：当矮人站在地面上时，他们在对抗冲撞或绊摔时的战技防御会获得+4种族加成。",
     "match": "固若金汤",
-    "img": "../assets/racial%20characteristics/Stability.png",
+    "img": "../assets/racial%20characteristics/Fortress%20unassailable.png",
     "races": ["dwarf"]
   },
   {
@@ -76,7 +76,7 @@
     "name": "坚如磐石",
     "description": "坚如磐石：在对抗毒素、法术以及类法术能力时，矮人的豁免检定会获得+2种族加值。",
     "match": "坚如磐石",
-    "img": "../assets/racial%20characteristics/Hardy.png",
+    "img": "../assets/racial%20characteristics/As%20solid%20as%20a%20rock.png",
     "races": ["dwarf"]
   },
   {
@@ -84,7 +84,7 @@
     "name": "防御训练：巨人",
     "description": "防御训练：巨人：在对抗属于巨人子类别的怪物时，矮人和侏儒的防御等级获得+4闪避增加值。",
     "match": "防御训练：巨人",
-    "img": "../assets/racial%20characteristics/Defensive%20training.png",
+    "img": "../assets/racial%20characteristics/Defense%20Training%20Giants.png",
     "races": ["dwarf"]
   },
   {
@@ -92,7 +92,7 @@
     "name": "世代血仇：兽人和地精",
     "description": "世代血仇：兽人和地精：在对抗属于兽人、地精子类别的类人生物时，矮人的攻击检定会获得+1种族加成值，这得益于他们为应对这些痛恨的死敌而进行的特殊训练。",
     "match": "世代血仇：兽人和地精",
-    "img": "../assets/racial%20characteristics/Hated.png",
+    "img": "../assets/racial%20characteristics/Generations%20of%20Blood%20Revenge%20Orcs%20and%20goblins.png",
     "races": ["dwarf"]
   },
   {
@@ -100,7 +100,7 @@
     "name": "矮人武器熟练",
     "description": "矮人武器熟练：矮人擅长使用战斧、重十字镐和战锤，并将任何名字中带有\u201c矮人\u201d词缀的武器视作军用武器。",
     "match": "矮人武器熟练",
-    "img": "../assets/racial%20characteristics/Proficient%20in%20dwarf%20weapons.png",
+    "img": "../assets/racial%20characteristics/Dwarf%20weapon%20proficiency.png",
     "races": ["dwarf"]
   }
 ]
