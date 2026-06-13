@@ -37,7 +37,7 @@
     "description": "敏锐直觉：矮人、精灵、侏儒、半精灵、半兽人、半身人、狐妖、土巨灵裔在进行察觉检定时获得+2种族加值。",
     "match": "敏锐直觉",
     "img": "../assets/racial%20characteristics/Sharp%20intuition.png",
-    "races": ["dwarf", "elf", "gnome"]
+    "races": ["dwarf", "elf", "gnome", "halfling"]
   },
   {
     "id": "elf-magic",
@@ -53,7 +53,7 @@
     "description": "种族传承：各种各样的地点和生活条件造成了与同胞有所区别的亚种。他们获得独特的种族特性，并失去某些常见的特性。",
     "match": "种族传承",
     "img": "../assets/racial%20characteristics/Racial%20Inheritance.png",
-    "races": ["dwarf", "elf", "gnome"]
+    "races": ["dwarf", "elf", "gnome", "halfling"]
   },
   {
     "id": "slow-and-steady",
@@ -138,9 +138,33 @@
   {
     "id": "slow-speed",
     "name": "缓慢移动",
-    "description": "缓慢移动：侏儒拥有20英尺的基础速度。",
+    "description": "缓慢移动：侏儒拥有20英尺的基础速度。半身人拥有20英尺的基础移动速度。",
     "match": "缓慢移动",
     "img": "../assets/racial%20characteristics/move%20slowly.png",
-    "races": ["gnome"]
+    "races": ["gnome", "halfling"]
+  },
+  {
+    "id": "fearless",
+    "name": "无所畏惧",
+    "description": "无所畏惧：半身人在所有对抗恐惧的豁免检定上获得+2种族加值。该加值可与半身强运所带来的加值叠加。",
+    "match": "无所畏惧",
+    "img": "",
+    "races": ["halfling"]
+  },
+  {
+    "id": "sure-footed",
+    "name": "脚踏实地",
+    "description": "脚踏实地：半身人的运动和灵巧检定会获得+2种族加值。",
+    "match": "脚踏实地",
+    "img": "",
+    "races": ["halfling"]
+  },
+  {
+    "id": "halfling-luck",
+    "name": "半身强运",
+    "description": "半身强运：半身人的所有豁免检定会获得+1种族加值。",
+    "match": "半身强运",
+    "img": "",
+    "races": ["halfling"]
   }
 ]
